@@ -7,7 +7,12 @@ const taskServices = require('../../service/tasks/tasks.service');
 router.get('/', async function (req, res) {
     try{
         const tasks = await taskServices.getTasks();
-        res.status(200).json(tasks);
+
+        setTimeout(() => {
+            res.status(200).json(tasks);
+        },1000);
+
+       
     }catch(e) {
         next(e);
     }
@@ -18,7 +23,11 @@ router.get('/:id', async function (req, res, next) {
     const id = req.params.id;
     try {
         const task = await taskServices.getTask(id);
-        res.status(200).json(task);
+
+        setTimeout(() => {
+            res.status(200).json(task);
+        },500);
+       
     } catch (e) {
         next(e);
     }
@@ -29,7 +38,11 @@ router.post('/', async function (req, res, next) {
     const task = req.body;
     try {
         const newTask = await taskServices.saveTask(task);
-        res.status(201).json(newTask);
+
+        setTimeout(() => {
+            res.status(201).json(newTask);
+        },1000);
+       
     } catch (e) {
         next(e);
     }
@@ -42,7 +55,12 @@ router.put('/:id', async function (req, res, next) {
 
     try {
         await taskServices.updateTask(id, task);
-        res.status(204).end();
+
+        setTimeout(() => {
+            res.status(204).end();
+        },1000);
+
+       
     } catch (e) {
         next(e);
     }
